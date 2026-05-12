@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Arka plandaki boş gri halka -->
+    <item>
+        <shape android:shape="ring" android:thicknessRatio="20" android:useLevel="false">
+            <solid android:color="#E0E0E0" />
+        </shape>
+    </item>
+    <!-- Süreye göre dolacak olan kırmızı/renkli halka -->
+    <item>
+        <shape android:shape="ring" android:thicknessRatio="20" android:useLevel="true">
+            <solid android:color="#E74C3C" />
+        </shape>
+    </item>
+</layer-list>

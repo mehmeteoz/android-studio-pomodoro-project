@@ -1,135 +1,203 @@
 package com.gora.pomodoro;
 
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.View;
+import android.os.IBinder;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity {
 
-    // Arayüz bileşenleri için değişkenler
-    private TextView textTimeLeft;
-    private Button buttonStartPause;
+    private TextView textTimeLeft, phaseIndicator, taskNameTitle, textPomodoroCount;
     private ProgressBar progressBar;
+    private Button buttonStartPause, buttonSkip, buttonBack;
 
-    // Sayaç için gerekli arka plan değişkenleri
-    private CountDownTimer countDownTimer;
-    private boolean timerRunning;
-    private long timeLeftInMillis;
-    private long totalTimeInMillis;
+    private TimerService timerService;
+    private boolean isBound = false;
+
+    // Receives real-time updates from the Service
+    private final BroadcastReceiver timerReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("TimerUpdate".equals(intent.getAction())) {
+                updateUIFromIntent(intent);
+            } else if ("TimerFinished".equals(intent.getAction())) {
+                Toast.makeText(TimerActivity.this, "Görev bitti!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    };
+
+    private final ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            TimerService.TimerBinder binder = (TimerService.TimerBinder) service;
+            timerService = binder.getService();
+            isBound = true;
+            syncWithService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_timer);
 
-        // Ekran kenar boşluklarını ayarlayan mevcut kodunuz
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        textTimeLeft = findViewById(R.id.textTimeLeft);
+        phaseIndicator = findViewById(R.id.taskName);
+        taskNameTitle = findViewById(R.id.TaskName);
+        textPomodoroCount = findViewById(R.id.textPomodoroCount);
+        progressBar = findViewById(R.id.progressBar);
+        buttonStartPause = findViewById(R.id.buttonStartPause);
+        buttonSkip = findViewById(R.id.pause2);
+        buttonBack = findViewById(R.id.pause3);
+
+        Intent intent = getIntent();
+        // Start the service only if we are passing new task data
+        if (intent.hasExtra("WORK_TIME") && !TimerService.isServiceRunning) {
+            startTimerService(intent);
+        }
+
+        buttonStartPause.setOnClickListener(v -> {
+            if (isBound && timerService != null) {
+                if (timerService.isTimerRunning()) {
+                    timerService.pauseTimer();
+                } else {
+                    timerService.startTimer();
+                }
+            }
         });
 
-        // 1. XML'deki bileşenleri Java'ya bağlama
-        // DİKKAT: R.id. kısmındaki isimlerin activity_timer.xml dosyanızdaki id'ler ile birebir aynı olması gerekir.
-        textTimeLeft = findViewById(R.id.textTimeLeft);
-        buttonStartPause = findViewById(R.id.buttonStartPause);
-        progressBar = findViewById(R.id.progressBar);
-
-        // 2. Başlangıç süresini ayarlama (Örnek: 25 Dakika = 25 * 60 * 1000 milisaniye)
-        totalTimeInMillis = 25 * 60 * 1000;
-        timeLeftInMillis = totalTimeInMillis;
-
-        // 3. ProgressBar'ın maksimum sınırını ayarlama
-        if (progressBar != null) {
-            progressBar.setMax((int) (totalTimeInMillis / 1000));
-            progressBar.setProgress((int) (timeLeftInMillis / 1000));
-        }
-
-        // 4. Uygulama açılır açılmaz ekrana 25:00 yazdırmak için metodu çağırıyoruz
-        updateCountDownText();
-
-        // 5. Başlat/Durdur Butonuna tıklanma olayını dinleme
-        if (buttonStartPause != null) {
-            buttonStartPause.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (timerRunning) {
-                        pauseTimer(); // Sayaç çalışıyorsa durdur
-                    } else {
-                        startTimer(); // Sayaç duruyorsa başlat
-                    }
-                }
-            });
-        }
-    }
-
-    // --- SAYAÇ METOTLARI AŞAĞIDADIR ---
-
-    // Sayacı Başlatma Metodu
-    private void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                // Her 1 saniyede (1000 milisaniye) bir bu kısım çalışır
-                timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-
-                // ProgressBar'ı kalan süreye göre günceller
-                if (progressBar != null) {
-                    progressBar.setProgress((int) (timeLeftInMillis / 1000));
-                }
+        buttonSkip.setOnClickListener(v -> {
+            if (isBound && timerService != null) {
+                timerService.skipPhase();
             }
+        });
 
-            @Override
-            public void onFinish() {
-                // Süre tamamen bittiğinde bu kısım çalışır
-                timerRunning = false;
-                if (buttonStartPause != null) {
-                    buttonStartPause.setText("Süre Bitti!");
-                }
-                if (progressBar != null) {
-                    progressBar.setProgress(0);
-                }
-            }
-        }.start();
+        buttonBack.setOnClickListener(v -> finish());
+    }
 
-        timerRunning = true;
-        if (buttonStartPause != null) {
-            buttonStartPause.setText("Durdur");
+    private void startTimerService(Intent intent) {
+        SharedPreferences prefs = getSharedPreferences("PomodoroPrefs", MODE_PRIVATE);
+        int breakMins = prefs.getInt("breakTime", 5);
+
+        Intent serviceIntent = new Intent(this, TimerService.class);
+        serviceIntent.putExtra("WORK_TIME", intent.getIntExtra("WORK_TIME", 25));
+        serviceIntent.putExtra("BREAK_AMOUNT", intent.getIntExtra("BREAK_AMOUNT", 2));
+        serviceIntent.putExtra("TASK_NAME", intent.getStringExtra("TASK_NAME"));
+        serviceIntent.putExtra("BREAK_MINS", breakMins);
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
         }
     }
 
-    // Sayacı Duraklatma Metodu
-    private void pauseTimer() {
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
-        timerRunning = false;
-        if (buttonStartPause != null) {
-            buttonStartPause.setText("Devam Et");
+    private void syncWithService() {
+        if (isBound && timerService != null) {
+            String name = timerService.getTaskName();
+            if (name != null) taskNameTitle.setText(name);
+            
+            updateUI(timerService.getTimeLeftInMillis(), 
+                     timerService.getDisplayTime(),
+                     timerService.isWorkPhase(), 
+                     timerService.isTimerRunning(), 
+                     timerService.getCurrentSegment(), 
+                     timerService.getTotalSegments(), 
+                     timerService.getMaxDuration());
         }
     }
 
-    // Kalan süreyi Dakika:Saniye formatına (Örn: 24:59) çeviren metot
-    private void updateCountDownText() {
-        int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+    private void updateUIFromIntent(Intent intent) {
+        long timeLeft = intent.getLongExtra("timeLeftInMillis", 0);
+        long displayTime = intent.getLongExtra("displayTime", 0);
+        boolean isWork = intent.getBooleanExtra("isWorkPhase", true);
+        boolean running = intent.getBooleanExtra("timerRunning", false);
+        int current = intent.getIntExtra("currentSegment", 1);
+        int total = intent.getIntExtra("totalSegments", 1);
+        String name = intent.getStringExtra("taskName");
+        long maxDuration = intent.getLongExtra("maxDuration", 1000);
 
-        // %02d formatı, sayının tek haneli olması durumunda başına 0 ekler
-        String timeLeftFormatted = String.format("%02d:%02d", minutes, seconds);
+        if (name != null) taskNameTitle.setText(name);
+        updateUI(timeLeft, displayTime, isWork, running, current, total, maxDuration);
+    }
 
-        if (textTimeLeft != null) {
-            textTimeLeft.setText(timeLeftFormatted);
+    private void updateUI(long timeLeft, long displayTime, boolean isWork, boolean running, int current, int total, long maxDuration) {
+        // Display current segment time remaining
+        int minutes = (int) (displayTime / 1000) / 60;
+        int seconds = (int) (displayTime / 1000) % 60;
+        textTimeLeft.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+
+        if (textPomodoroCount != null) {
+            textPomodoroCount.setText(String.format(Locale.getDefault(), "%d / %d", current, total));
+        }
+
+        if (isWork) {
+            phaseIndicator.setText("Çalışma");
+        } else {
+            phaseIndicator.setText("Mola");
+        }
+
+        buttonStartPause.setText(running ? "Durdur" : "Başlat");
+        
+        // Progress bar synced to current phase's local duration
+        progressBar.setMax((int) (maxDuration / 1000));
+        progressBar.setProgress((int) (timeLeft / 1000));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Bind to service
+        Intent intent = new Intent(this, TimerService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("TimerUpdate");
+        filter.addAction("TimerFinished");
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(timerReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(timerReceiver, filter);
+        }
+        
+        // Manual sync if already bound (re-entering activity)
+        if (isBound) {
+            syncWithService();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isBound) {
+            unbindService(connection);
+            isBound = false;
+        }
+        try {
+            unregisterReceiver(timerReceiver);
+        } catch (IllegalArgumentException e) {
+            // Already unregistered
         }
     }
 }

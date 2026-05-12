@@ -6,41 +6,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBFCFC"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
+    <!-- Üst Kısım: Başlık -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Odaklanacak Görevler"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Görevlerim"
         android:textColor="#2C3E50"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="350dp"
-        android:layout_height="487dp"
+    <!-- Üst Kısım: Ayarlara Gitme Butonu -->
+    <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#2C3E50"
+        android:text="Ayarlar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Orta Kısım: Görevlerin Listeleneceği Alan (Component 8) -->
+    <ListView
+        android:id="@+id/listViewTasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:divider="#D5D8DC"
+        android:dividerHeight="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textMainTitle" />
 
+    <!-- Alt Kısım: Yeni Görev Ekleme Butonu (FAB) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="53dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="30dp"
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#E74C3C"
-        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:srcCompat="@android:drawable/ic_input_add"
-        app:useCompatPadding="false" />
+        app:tint="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
