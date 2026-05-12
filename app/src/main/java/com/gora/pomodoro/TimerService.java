@@ -19,6 +19,8 @@ import java.util.Locale;
 public class TimerService extends Service {
 
     public static boolean isServiceRunning = false;
+    public static final String ACTION_PAUSE = "com.gora.pomodoro.ACTION_PAUSE";
+    public static final String ACTION_RESUME = "com.gora.pomodoro.ACTION_RESUME";
 
     private final IBinder binder = new TimerBinder();
     private CountDownTimer countDownTimer;
@@ -50,6 +52,17 @@ public class TimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && intent.getAction() != null) {
+            String action = intent.getAction();
+            if (action.equals(ACTION_PAUSE)) {
+                pauseTimer();
+                return START_STICKY;
+            } else if (action.equals(ACTION_RESUME)) {
+                startTimer();
+                return START_STICKY;
+            }
+        }
+
         if (intent != null && intent.hasExtra("WORK_TIME") && !isInitialized) {
             taskName = intent.getStringExtra("TASK_NAME");
             int workMins = intent.getIntExtra("WORK_TIME", 25);
@@ -123,13 +136,18 @@ public class TimerService extends Service {
         goToNextPhase();
     }
 
+    public void finishTaskEarly() {
+        pauseTimer();
+        isServiceRunning = false;
+        stopForeground(STOP_FOREGROUND_REMOVE);
+        sendBroadcastFinished();
+        stopSelf();
+    }
+
     private void goToNextPhase() {
         if (isWorkPhase) {
             if (currentSegment >= totalSegments) {
-                isServiceRunning = false;
-                stopForeground(STOP_FOREGROUND_REMOVE);
-                sendBroadcastFinished();
-                stopSelf();
+                finishTaskEarly();
                 return;
             }
             isWorkPhase = false;
@@ -160,7 +178,7 @@ public class TimerService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
-        return new NotificationCompat.Builder(this, CHANNEL_ID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(taskName != null ? taskName : "Pomodoro")
                 .setContentText(contentText)
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
@@ -168,8 +186,21 @@ public class TimerService extends Service {
                 .setOngoing(true)
                 .setSilent(true) // Keeps it quiet during updates
                 .setPriority(NotificationCompat.PRIORITY_LOW)
-                .setCategory(NotificationCompat.CATEGORY_SERVICE)
-                .build();
+                .setCategory(NotificationCompat.CATEGORY_SERVICE);
+
+        if (timerRunning) {
+            Intent pauseIntent = new Intent(this, TimerService.class);
+            pauseIntent.setAction(ACTION_PAUSE);
+            PendingIntent pausePendingIntent = PendingIntent.getService(this, 1, pauseIntent, PendingIntent.FLAG_IMMUTABLE);
+            builder.addAction(android.R.drawable.ic_media_pause, "Duraklat", pausePendingIntent);
+        } else {
+            Intent resumeIntent = new Intent(this, TimerService.class);
+            resumeIntent.setAction(ACTION_RESUME);
+            PendingIntent resumePendingIntent = PendingIntent.getService(this, 2, resumeIntent, PendingIntent.FLAG_IMMUTABLE);
+            builder.addAction(android.R.drawable.ic_media_play, "Devam Et", resumePendingIntent);
+        }
+
+        return builder.build();
     }
 
     private void createNotificationChannel() {

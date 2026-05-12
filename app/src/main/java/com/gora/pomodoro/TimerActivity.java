@@ -23,7 +23,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private TextView textTimeLeft, phaseIndicator, taskNameTitle, textPomodoroCount;
     private ProgressBar progressBar;
-    private Button buttonStartPause, buttonSkip, buttonBack;
+    private Button buttonStartPause, buttonSkip, buttonBack, buttonFinishEarly;
 
     private TimerService timerService;
     private boolean isBound = false;
@@ -69,6 +69,7 @@ public class TimerActivity extends AppCompatActivity {
         buttonStartPause = findViewById(R.id.buttonStartPause);
         buttonSkip = findViewById(R.id.pause2);
         buttonBack = findViewById(R.id.pause3);
+        buttonFinishEarly = findViewById(R.id.finishEarly);
 
         Intent intent = getIntent();
         // Start the service only if we are passing new task data
@@ -89,6 +90,12 @@ public class TimerActivity extends AppCompatActivity {
         buttonSkip.setOnClickListener(v -> {
             if (isBound && timerService != null) {
                 timerService.skipPhase();
+            }
+        });
+
+        buttonFinishEarly.setOnClickListener(v -> {
+            if (isBound && timerService != null) {
+                timerService.finishTaskEarly();
             }
         });
 
