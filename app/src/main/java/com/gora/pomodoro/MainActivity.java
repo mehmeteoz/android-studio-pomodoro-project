@@ -2,7 +2,9 @@ package com.gora.pomodoro;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
         buttonSettings = findViewById(R.id.buttonSettings);
         listViewTasks = findViewById(R.id.listViewTasks);
 
+        loadTasks();
+
         if (taskNames.isEmpty()) {
             taskNames.add("Örnek Görev (25 Dk)");
             taskWorkTimes.add(25);
             taskBreakAmounts.add(3);
+            saveTasks(this);
         }
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, taskNames);
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         taskWorkTimes.remove(position);
                         taskBreakAmounts.remove(position);
                         adapter.notifyDataSetChanged();
+                        saveTasks(MainActivity.this);
                     })
                     .setNegativeButton("Hayır", null)
                     .show();
@@ -102,6 +108,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         checkNotificationPermission();
+    }
+
+    public static void saveTasks(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PomodoroPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("taskCount", taskNames.size());
+        for (int i = 0; i < taskNames.size(); i++) {
+            editor.putString("taskName_" + i, taskNames.get(i));
+            editor.putInt("taskWorkTime_" + i, taskWorkTimes.get(i));
+            editor.putInt("taskBreakAmount_" + i, taskBreakAmounts.get(i));
+        }
+        editor.apply();
+    }
+
+    private void loadTasks() {
+        SharedPreferences sharedPreferences = getSharedPreferences("PomodoroPrefs", MODE_PRIVATE);
+        int count = sharedPreferences.getInt("taskCount", 0);
+
+        taskNames.clear();
+        taskWorkTimes.clear();
+        taskBreakAmounts.clear();
+
+        for (int i = 0; i < count; i++) {
+            String name = sharedPreferences.getString("taskName_" + i, null);
+            if (name != null) {
+                taskNames.add(name);
+                taskWorkTimes.add(sharedPreferences.getInt("taskWorkTime_" + i, 25));
+                taskBreakAmounts.add(sharedPreferences.getInt("taskBreakAmount_" + i, 3));
+            }
+        }
     }
 
     private void checkNotificationPermission() {

@@ -60,6 +60,9 @@ public class AddTaskActivity extends AppCompatActivity {
             MainActivity.taskWorkTimes.add(workMins);
             MainActivity.taskBreakAmounts.add(breakAmount);
 
+            // Save tasks to persistence
+            MainActivity.saveTasks(this);
+
             // Close this activity and go back
             finish();
         });
