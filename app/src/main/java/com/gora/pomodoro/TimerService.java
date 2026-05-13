@@ -5,14 +5,25 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ServiceInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.Locale;
 
@@ -81,7 +92,6 @@ public class TimerService extends Service {
             startForegroundServiceWithNotification(getFormattedStatusText());
             startTimer();
         } else {
-            // Service already running or restarted, sync current state
             startForegroundServiceWithNotification(getFormattedStatusText());
             updateNotification();
             sendBroadcastUpdate();
@@ -116,12 +126,40 @@ public class TimerService extends Service {
             @Override
             public void onFinish() {
                 timerRunning = false;
+                triggerAlert();
                 goToNextPhase();
             }
         }.start();
         timerRunning = true;
         updateNotification();
         sendBroadcastUpdate();
+    }
+
+    private void triggerAlert() {
+        SharedPreferences prefs = getSharedPreferences("PomodoroPrefs", Context.MODE_PRIVATE);
+        boolean soundEnabled = prefs.getBoolean("soundEnabled", true);
+        boolean vibrationEnabled = prefs.getBoolean("vibrationEnabled", true);
+
+        if (vibrationEnabled) {
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (v != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    v.vibrate(500);
+                }
+            }
+        }
+
+        if (soundEnabled) {
+            try {
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                r.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void pauseTimer() {
@@ -161,7 +199,7 @@ public class TimerService extends Service {
     }
 
     private void updateNotification() {
-        NotificationManager manager = getSystemService(NotificationManager.class);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (manager != null && isServiceRunning) {
             manager.notify(NOTIFICATION_ID, getNotification(getFormattedStatusText()));
         }
@@ -169,6 +207,34 @@ public class TimerService extends Service {
 
     public long getDisplayTime() {
         return timeLeftInMillis;
+    }
+
+    public boolean isTimerRunning() {
+        return timerRunning;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public long getTimeLeftInMillis() {
+        return timeLeftInMillis;
+    }
+
+    public boolean isWorkPhase() {
+        return isWorkPhase;
+    }
+
+    public int getCurrentSegment() {
+        return currentSegment;
+    }
+
+    public int getTotalSegments() {
+        return totalSegments;
+    }
+
+    public long getMaxDuration() {
+        return isWorkPhase ? segmentDurationMillis : breakDurationMillis;
     }
 
     private Notification getNotification(String contentText) {
@@ -181,10 +247,11 @@ public class TimerService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(taskName != null ? taskName : "Pomodoro")
                 .setContentText(contentText)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setSmallIcon(R.drawable.ic_pomodoro_logo)
+                .setLargeIcon(getBitmapFromDrawable(R.mipmap.ic_launcher))
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
-                .setSilent(true) // Keeps it quiet during updates
+                .setSilent(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setCategory(NotificationCompat.CATEGORY_SERVICE);
 
@@ -201,6 +268,24 @@ public class TimerService extends Service {
         }
 
         return builder.build();
+    }
+
+    private Bitmap getBitmapFromDrawable(int drawableRes) {
+        Drawable drawable = ContextCompat.getDrawable(this, drawableRes);
+        if (drawable == null) return null;
+
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        if (width <= 0 || height <= 0) {
+            width = 100;
+            height = 100;
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     private void createNotificationChannel() {
@@ -257,12 +342,4 @@ public class TimerService extends Service {
         if (countDownTimer != null) countDownTimer.cancel();
         super.onDestroy();
     }
-
-    public long getTimeLeftInMillis() { return timeLeftInMillis; }
-    public boolean isTimerRunning() { return timerRunning; }
-    public boolean isWorkPhase() { return isWorkPhase; }
-    public int getCurrentSegment() { return currentSegment; }
-    public int getTotalSegments() { return totalSegments; }
-    public String getTaskName() { return taskName; }
-    public long getMaxDuration() { return isWorkPhase ? segmentDurationMillis : breakDurationMillis; }
 }

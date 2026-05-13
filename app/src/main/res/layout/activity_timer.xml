@@ -5,41 +5,56 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#E74C3C"
+    android:background="#121418"
     tools:context=".TimerActivity">
-
 
     <TextView
         android:id="@+id/TaskName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="56dp"
         android:text="Görev"
         android:textAlignment="center"
-        android:textSize="34sp"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textPomodoroCount"
+        android:id="@+id/taskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="1 / 4"
-        android:textSize="20sp"
+        android:text="Çalışma"
+        android:textColor="#E74C3C"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TaskName" />
 
+    <TextView
+        android:id="@+id/textPomodoroCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="1 / 4"
+        android:textColor="#7F8C8D"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:progressDrawable="@drawable/circular_progress"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStartPause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPomodoroCount" />
@@ -49,68 +64,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00"
-        android:textSize="48sp"
+        android:textColor="#FFFFFF"
+        android:textSize="64sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
-    <TextView
-        android:id="@+id/taskName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Çalışma"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
     <Button
         android:id="@+id/buttonStartPause"
-        android:layout_width="168dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="220dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#E74C3C"
         android:text="Başlat"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutButtons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskName" />
-
-    <Button
-        android:id="@+id/pause2"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#E74C3C"
-        android:text="Atla"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStartPause" />
-
-    <Button
-        android:id="@+id/finishEarly"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="#E74C3C"
-        android:text="Bitir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/pause3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayoutButtons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#E74C3C"
-        android:text="görevlere geri dön"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.935"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/pause2"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="#2C3E50"
+            android:text="Atla"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/finishEarly"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="#2C3E50"
+            android:text="Bitir"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/pause3"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:backgroundTint="#2C3E50"
+            android:text="Geri"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

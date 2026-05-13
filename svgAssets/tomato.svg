@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="domates.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="4.7552931"
+     inkscape:cx="54.675915"
+     inkscape:cy="71.078689"
+     inkscape:window-width="1376"
+     inkscape:window-height="1032"
+     inkscape:window-x="6"
+     inkscape:window-y="8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker2"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker7"
+       refX="6"
+       refY="-0.35"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.001"
+       markerHeight="0.001"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.656 1.344,3 3,3 v -6 c -1.656,0 -3,1.344 -3,3 z"
+         id="path7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25" />
+    </marker>
+    <linearGradient
+       id="swatch1"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ff2a2a;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+    </linearGradient>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-4"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-8"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-1"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-5"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-27" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-2"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-1"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-8"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-2"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-8-3"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-9-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-2-4"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-7-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-8-2"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-9-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-2-7"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-7-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="SemiCircleFilled-8-2-5"
+       refX="4"
+       refY="1.4"
+       orient="90.04397172"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.4562383"
+       markerHeight="0.256791"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path25-9-7-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2-2-7-2"
+       refX="9.9055023"
+       refY="-1.459399"
+       orient="auto"
+       inkscape:stockid="Filled semicircle"
+       markerWidth="0.37324405"
+       markerHeight="0.25193644"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.6pt"
+         d="m -0.22470421,-0.02741555 c 0,1.65599995 1.34400001,2.99999995 3.00000001,2.99999995 v -6 c -1.656,0 -3.00000001,1.344 -3.00000001,3.00000005 z"
+         id="path2-7-9-8" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Katman 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="M 60,25.359375 A 43.92804,43.92804 0 0 0 16.072266,69.287109 43.92804,43.92804 0 0 0 60,113.21484 43.92804,43.92804 0 0 0 103.92773,69.287109 43.92804,43.92804 0 0 0 60,25.359375 Z"
+       style="opacity:1;fill:none;fill-opacity:0;stroke:#ff2a2a;stroke-width:4.16655"
+       id="path3" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#75d149;fill-opacity:1;stroke:none;stroke-width:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="path4"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="22.007435"
+       sodipodi:cy="4.4609666"
+       sodipodi:r1="11.520086"
+       sodipodi:r2="5.7600431"
+       sodipodi:arg1="-2.0943951"
+       sodipodi:arg2="-1.5707963"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 16.247392,-5.5157208 11.520086,0 5.760043,9.9766874 -5.760043,9.9766874 -11.520086,0 -5.760043,-9.9766874 z"
+       transform="matrix(0.91483459,-0.66623912,0.44346287,0.57045956,50.007521,25.669664)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#75d149;fill-opacity:1;stroke:none;stroke-width:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="path4-8"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="22.007435"
+       sodipodi:cy="4.4609666"
+       sodipodi:r1="11.520086"
+       sodipodi:r2="5.7600431"
+       sodipodi:arg1="-2.0943951"
+       sodipodi:arg2="-1.5707963"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 16.247392,-5.5157208 11.520086,0 5.760043,9.9766874 -5.760043,9.9766874 -11.520086,0 -5.760043,-9.9766874 z"
+       transform="matrix(0.48470724,0.44552472,-0.27460691,0.31822768,41.535485,4.6426937)" />
+    <rect
+       style="opacity:1;fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled);marker-end:url(#marker2);paint-order:normal"
+       id="rect7"
+       width="1.9292649"
+       height="5.349339"
+       x="59.230526"
+       y="35.161121" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-4);marker-end:url(#marker2-8);paint-order:normal"
+       id="rect7-5"
+       width="1.9292649"
+       height="5.349339"
+       x="-66.660942"
+       y="28.364676"
+       transform="rotate(-88.395558)" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-1);marker-end:url(#marker2-5);paint-order:normal"
+       id="rect7-4"
+       width="1.9292649"
+       height="5.349339"
+       x="58.390762"
+       y="98.876167" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-2);marker-end:url(#marker2-1);paint-order:normal"
+       id="rect7-7"
+       width="1.9292649"
+       height="5.349339"
+       x="66.639961"
+       y="-91.677216"
+       transform="rotate(90)" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-8);marker-end:url(#marker2-2);paint-order:normal"
+       id="rect7-43"
+       width="1.9292649"
+       height="5.349339"
+       x="91.884415"
+       y="-25.783051"
+       transform="rotate(45)" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-8-3);marker-end:url(#marker2-2-4);paint-order:normal"
+       id="rect7-43-8"
+       width="1.9292649"
+       height="5.349339"
+       x="90.1576"
+       y="35.898724"
+       transform="rotate(45)" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-8-2);marker-end:url(#marker2-2-7);paint-order:normal"
+       id="rect7-43-9"
+       width="1.9292649"
+       height="5.349339"
+       x="-6.3294706"
+       y="58.633354"
+       transform="rotate(-45)" />
+    <rect
+       style="fill:#fc4d5a;fill-opacity:1;stroke:#fc4d5a;stroke-width:2.60031;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#SemiCircleFilled-8-2-5);marker-end:url(#marker2-2-7-2);paint-order:normal"
+       id="rect7-43-9-2"
+       width="1.9292649"
+       height="5.349339"
+       x="-9.7489357"
+       y="119.50237"
+       transform="rotate(-45)" />
+  </g>
+</svg>

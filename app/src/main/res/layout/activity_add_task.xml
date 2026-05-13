@@ -5,51 +5,51 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBFCFC"
+    android:background="#F4F6F9"
     tools:context=".AddTaskActivity">
 
-    <!-- Başlık -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Görev Ekle"
-        android:textColor="#2C3E50"
-        android:textSize="36sp"
+        android:text="Yeni Görev"
+        android:textColor="#1E272E"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Görev Adı Etiketi -->
     <TextView
         android:id="@+id/labelTaskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:text="Görev Adı"
-        android:textColor="#2C3E50"
-        android:textSize="18sp"
+        android:textColor="#7F8C8D"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
-    <!-- Görev Adı Giriş Kutusu -->
     <EditText
         android:id="@+id/editTaskName"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="56dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:background="@android:drawable/editbox_background_normal"
         android:hint="Örn: Proje Kodlaması"
         android:inputType="text"
+        android:paddingHorizontal="16dp"
+        android:textColor="#2C3E50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTaskName" />
 
-    <!-- Açıklama Etiketi -->
     <TextView
         android:id="@+id/labelTaskDesc"
         android:layout_width="wrap_content"
@@ -57,29 +57,29 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="Açıklama"
-        android:textColor="#2C3E50"
-        android:textSize="18sp"
+        android:textColor="#7F8C8D"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTaskName" />
 
-    <!-- Açıklama Giriş Kutusu -->
     <EditText
         android:id="@+id/editTaskDesc"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@android:drawable/editbox_background"
+        android:background="@android:drawable/editbox_background_normal"
         android:gravity="top|start"
         android:hint="Bu görevle ilgili notlar..."
         android:inputType="textMultiLine"
-        android:padding="8dp"
+        android:padding="16dp"
+        android:textColor="#2C3E50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTaskDesc" />
 
-    <!-- NumberPicker'ları Yan Yana Tutan Kutu -->
     <LinearLayout
         android:id="@+id/layoutPickers"
         android:layout_width="0dp"
@@ -87,12 +87,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTaskDesc">
 
-        <!-- Çalışma Süresi Tarafı -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -103,9 +103,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Süre (dk)"
-                android:textColor="#2C3E50"
-                android:textSize="18sp" />
+                android:textColor="#7F8C8D"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <NumberPicker
                 android:id="@+id/pickerWorkTime"
@@ -113,7 +115,6 @@
                 android:layout_height="120dp" />
         </LinearLayout>
 
-        <!-- Mola Sayısı Tarafı -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -124,9 +125,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Mola Sayısı"
-                android:textColor="#2C3E50"
-                android:textSize="18sp" />
+                android:textColor="#7F8C8D"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <NumberPicker
                 android:id="@+id/pickerBreakAmount"
@@ -135,11 +138,10 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Kaydet Butonu -->
     <Button
         android:id="@+id/buttonAddTask"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
@@ -147,6 +149,7 @@
         android:text="Görevi Ekle"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

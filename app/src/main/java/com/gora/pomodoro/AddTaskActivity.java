@@ -36,7 +36,7 @@ public class AddTaskActivity extends AppCompatActivity {
         buttonAddTask = findViewById(R.id.buttonAddTask);
         editTaskName = findViewById(R.id.editTaskName);
 
-        workTimePicker.setMinValue(5);
+        workTimePicker.setMinValue(1);
         workTimePicker.setMaxValue(60);
         workTimePicker.setValue(25);
         workTimePicker.setWrapSelectorWheel(true);

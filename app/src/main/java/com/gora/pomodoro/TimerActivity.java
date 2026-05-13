@@ -1,5 +1,6 @@
 package com.gora.pomodoro;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
@@ -94,9 +96,18 @@ public class TimerActivity extends AppCompatActivity {
         });
 
         buttonFinishEarly.setOnClickListener(v -> {
-            if (isBound && timerService != null) {
-                timerService.finishTaskEarly();
-            }
+            // Prevent accidental clicks with a confirmation dialog
+            new AlertDialog.Builder(TimerActivity.this)
+                    .setTitle("Görevi Erken Bitir")
+                    .setMessage("Bu görevi henüz tamamlamadınız. Erken bitirmek istediğinize emin misiniz?")
+                    .setPositiveButton("Evet, Bitir", (dialog, which) -> {
+                        // This code only runs if the user clicks "Evet"
+                        if (isBound && timerService != null) {
+                            timerService.finishTaskEarly();
+                        }
+                    })
+                    .setNegativeButton("İptal", null) // Clicking "İptal" just dismisses the dialog
+                    .show();
         });
 
         buttonBack.setOnClickListener(v -> finish());
@@ -171,6 +182,7 @@ public class TimerActivity extends AppCompatActivity {
         progressBar.setProgress((int) (timeLeft / 1000));
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     protected void onStart() {
         super.onStart();
