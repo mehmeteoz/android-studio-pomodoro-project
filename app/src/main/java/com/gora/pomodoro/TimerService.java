@@ -12,6 +12,8 @@ import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -138,6 +140,7 @@ public class TimerService extends Service {
     private void triggerAlert() {
         SharedPreferences prefs = getSharedPreferences("PomodoroPrefs", Context.MODE_PRIVATE);
         boolean soundEnabled = prefs.getBoolean("soundEnabled", true);
+        boolean customSoundEnabled = prefs.getBoolean("customSoundEnabled", false);
         boolean vibrationEnabled = prefs.getBoolean("vibrationEnabled", true);
 
         if (vibrationEnabled) {
@@ -153,9 +156,28 @@ public class TimerService extends Service {
 
         if (soundEnabled) {
             try {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-                r.play();
+                boolean customSoundPlayed = false;
+                if (customSoundEnabled) {
+                    // Check if custom sound exists in res/raw/timer_sound
+                    int soundResId = getResources().getIdentifier("timer_sound", "raw", getPackageName());
+                    if (soundResId != 0) {
+                        MediaPlayer mediaPlayer = MediaPlayer.create(this, soundResId);
+                        if (mediaPlayer != null) {
+                            mediaPlayer.start();
+                            mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+                            customSoundPlayed = true;
+                        }
+                    }
+                }
+
+                if (!customSoundPlayed) {
+                    // Fallback to default notification sound
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                    if (r != null) {
+                        r.play();
+                    }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

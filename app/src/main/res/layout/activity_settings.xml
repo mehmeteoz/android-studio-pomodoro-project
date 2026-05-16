@@ -37,11 +37,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textSettingsTitle" />
 
     <Switch
+        android:id="@+id/switchCustomSound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
+        android:text="Özel Bildirim Kullanmak İstiyor Musunuz?"
+        android:textColor="#2C3E50"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchSound" />
+
+    <Switch
         android:id="@+id/switchVibration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:minHeight="48dp"
         android:text="Titreşim Kullan"
@@ -49,7 +64,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchSound" />
+        app:layout_constraintTop_toBottomOf="@+id/switchCustomSound" />
 
     <LinearLayout
         android:id="@+id/layoutBreakTime"
