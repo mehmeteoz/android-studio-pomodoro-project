@@ -1,56 +1,65 @@
-# Pomodoro - Focus & Task Management
+# ⏱️ Pomodoro - Focus & Task Management
 
-A robust, native Android application designed to boost productivity using the Pomodoro Technique. This app allows users to create custom tasks, manage work-break cycles with a persistent background timer, and stay focused with visual and audio alerts.
+A robust, native Android application designed to boost productivity using the Pomodoro Technique. Effortlessly create custom tasks, manage work-break cycles with a persistent background timer, and stay dialed-in with seamless visual and audio alerts.
 
-## 🚀 Features
+<div align="center">
+    <img src="https://img.shields.io/badge/Platform-Android%20%28API%2026%2B%29-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android Badge">
+    <img src="https://img.shields.io/badge/Language-Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java Badge">
+    <img src="https://img.shields.io/badge/License-Open%20Source-blue?style=for-the-badge" alt="License Badge">
+</div>
 
-- **Custom Task Management**:
-    - Create tasks with specific names and detailed descriptions.
-    - Set work duration (1-60 minutes) using intuitive `NumberPickers`.
-    - Configure the number of break segments for each task.
-    - Persistent task list saved via `SharedPreferences`.
-- **Advanced Timer Engine**:
-    - **Persistent Foreground Service**: The timer remains active even when the app is in the background or the screen is off, ensuring your focus session isn't interrupted.
-    - **Automatic Phase Switching**: Seamlessly transitions between **Work (Çalışma)** and **Break (Mola)** phases.
-    - **Smart Notifications**: Control the timer (Pause/Resume) directly from the notification shade.
-- **Interactive Timer UI**:
-    - **Circular Progress Visualization**: A beautiful, real-time progress bar synced with the countdown.
-    - **Dynamic Controls**: Options to Start/Pause, Skip Phase, or Finish the entire task early with a confirmation dialog.
-- **Personalized Settings**:
-    - Toggle sound alerts for phase completions.
-    - Support for **Custom Notification Sounds** (place `timer_sound.raw` in `res/raw`).
-    - Haptic feedback (Vibration) support.
-    - Adjustable default break durations.
-- **Modern Android Standards**:
-    - **Edge-to-Edge** support for a modern look.
-    - Android 13+ **Runtime Notification Permissions**.
-    - Optimized for background execution using `specialUse` foreground service type.
+---
 
-## 🛠️ Technical Details
+## 📱 Visual Preview
 
-- **Language**: Java
-- **UI Architecture**: XML Layouts with `ConstraintLayout` and `Material Components`.
-- **Persistence**: `SharedPreferences` for user settings and task list management.
-- **Components**:
-    - `TimerService`: The core engine managing the `CountDownTimer` and notifications.
-    - `BroadcastReceiver`: Facilitates real-time communication between the background service and the UI.
-    - `ServiceConnection`: Binds the UI to the service for precise control.
+| Task Dashboard | Active Focus Timer | Custom Task Creation |
+| :-: | :-: | :-: |
+| *[Add Screenshot 1]* | *[Add Screenshot 2]* | *[Add Screenshot 3]* |
+
+---
+
+## 🚀 Key Features
+
+### 📝 Custom Task Management
+* **Flexible Creation:** Set specific task names and detailed contextual descriptions.
+* **Granular Control:** Adjust work durations (**1-60 minutes**) using intuitive `NumberPickers`.
+* **Cycle Settings:** Configure exact break segments tailored to each specific task.
+* **Persistent Storage:** Your task list is safely saved locally via `SharedPreferences`.
+
+### ⚡ Advanced Timer Engine
+* **Persistent Foreground Service:** The timer remains active even when the app is minimized or the screen is turned off.
+* **Automatic Phase Switching:** Seamlessly transitions between **Work (Çalışma)** and **Break (Mola)** phases.
+* **Smart Notifications:** Pause, resume, or track your timer status directly from the Android notification shade.
+
+### 🎨 Interactive Timer UI
+* **Circular Progress Visualization:** A beautiful, real-time progress bar perfectly synced with your countdown.
+* **Dynamic Controls:** Instantly Start, Pause, Skip Phase, or Finish the entire task early via a secure confirmation dialog.
+
+### ⚙️ Personalized Settings
+* **Audio Alerts:** Toggle sound triggers for phase completions.
+* **Custom Sounds:** Support for custom notification audio (drop your `timer_sound.raw` into `res/raw`).
+* **Haptic Feedback:** Tactile vibration support for physical alerts.
+
+---
+
+## 🛠️ Technical Architecture
+
+| Component | Technology / Implementation |
+| :--- | :--- |
+| **Language** | Java |
+| **UI Architecture** | XML Layouts with `ConstraintLayout` & `Material Components` |
+| **Persistence** | `SharedPreferences` (User settings & task serialization) |
+| **Background Execution**| `TimerService` (`specialUse` foreground service type optimized for background limits) |
+| **IPC / Communication**| `BroadcastReceiver` & `ServiceConnection` for real-time UI/Service binding |
+
+---
 
 ## 📂 Project Structure
 
-- `MainActivity`: Task dashboard and navigation to settings/addition.
-- `TimerActivity`: The main focus screen with progress tracking and controls.
-- `AddTaskActivity`: Interface for defining new work sessions.
-- `SettingsActivity`: Centralized hub for app preferences and alerts.
-- `TimerService`: Background service handling the timing logic and alerts.
-
-## ⚙️ Getting Started
-
-1. Clone the repository.
-2. Open in **Android Studio**.
-3. Sync Gradle dependencies.
-4. Run on a physical device or emulator (API 26+).
-
-## 📄 License
-
-This project is open-source. Feel free to fork and customize!
+```text
+📂 app/src/main/java/[your/package/name]/
+├── 📄 MainActivity     # Task dashboard & entry navigation
+├── 📄 TimerActivity    # Core focus screen with circular progress tracking
+├── 📄 AddTaskActivity   # Interface for configuring new work sessions
+├── 📄 SettingsActivity  # Central hub for app preferences & alerts
+└── 📄 TimerService      # Background engine managing CountDownTimer & notifications
