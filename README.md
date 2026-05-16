@@ -10,14 +10,6 @@ A robust, native Android application designed to boost productivity using the Po
 
 ---
 
-## 📱 Visual Preview
-
-| Task Dashboard | Active Focus Timer | Custom Task Creation |
-| :-: | :-: | :-: |
-| *[Add Screenshot 1]* | *[Add Screenshot 2]* | *[Add Screenshot 3]* |
-
----
-
 ## 🚀 Key Features
 
 ### 📝 Custom Task Management
@@ -54,10 +46,6 @@ A robust, native Android application designed to boost productivity using the Po
 
 ---
 
-## 📂 Project Structure
-
-```text
-📂 app/src/main/java/[your/package/name]/
 ├── 📄 MainActivity     # Task dashboard & entry navigation
 ├── 📄 TimerActivity    # Core focus screen with circular progress tracking
 ├── 📄 AddTaskActivity   # Interface for configuring new work sessions
