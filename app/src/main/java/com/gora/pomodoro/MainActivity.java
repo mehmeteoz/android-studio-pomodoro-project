@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> taskNames = new ArrayList<>();
     public static ArrayList<Integer> taskWorkTimes = new ArrayList<>();
     public static ArrayList<Integer> taskBreakAmounts = new ArrayList<>();
+    public static ArrayList<String> taskDescriptions = new ArrayList<>();
 
     private ArrayAdapter<String> adapter;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             taskNames.add("Örnek Görev (25 Dk)");
             taskWorkTimes.add(25);
             taskBreakAmounts.add(3);
+            taskDescriptions.add("Bu bir örnek görev açıklamasıdır.");
             saveTasks(this);
         }
 
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("WORK_TIME", taskWorkTimes.get(position));
                 intent.putExtra("TASK_NAME", taskNames.get(position));
                 intent.putExtra("BREAK_AMOUNT", taskBreakAmounts.get(position));
+                intent.putExtra("TASK_DESC", taskDescriptions.get(position));
                 startActivity(intent);
             }
         });
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         taskNames.remove(position);
                         taskWorkTimes.remove(position);
                         taskBreakAmounts.remove(position);
+                        taskDescriptions.remove(position);
                         adapter.notifyDataSetChanged();
                         saveTasks(MainActivity.this);
                     })
@@ -121,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("taskName_" + i, taskNames.get(i));
             editor.putInt("taskWorkTime_" + i, taskWorkTimes.get(i));
             editor.putInt("taskBreakAmount_" + i, taskBreakAmounts.get(i));
+            editor.putString("taskDesc_" + i, taskDescriptions.get(i));
         }
         editor.apply();
     }
@@ -132,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         taskNames.clear();
         taskWorkTimes.clear();
         taskBreakAmounts.clear();
+        taskDescriptions.clear();
 
         for (int i = 0; i < count; i++) {
             String name = sharedPreferences.getString("taskName_" + i, null);
@@ -139,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 taskNames.add(name);
                 taskWorkTimes.add(sharedPreferences.getInt("taskWorkTime_" + i, 25));
                 taskBreakAmounts.add(sharedPreferences.getInt("taskBreakAmount_" + i, 3));
+                taskDescriptions.add(sharedPreferences.getString("taskDesc_" + i, ""));
             }
         }
     }

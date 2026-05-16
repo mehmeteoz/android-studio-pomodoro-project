@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private TextView textTimeLeft, phaseIndicator, taskNameTitle, textPomodoroCount;
+    private TextView textTimeLeft, phaseIndicator, taskNameTitle, textPomodoroCount, textDescription;
     private ProgressBar progressBar;
     private Button buttonStartPause, buttonSkip, buttonBack, buttonFinishEarly;
 
@@ -67,6 +67,7 @@ public class TimerActivity extends AppCompatActivity {
         phaseIndicator = findViewById(R.id.taskName);
         taskNameTitle = findViewById(R.id.TaskName);
         textPomodoroCount = findViewById(R.id.textPomodoroCount);
+        textDescription = findViewById(R.id.description);
         progressBar = findViewById(R.id.progressBar);
         buttonStartPause = findViewById(R.id.buttonStartPause);
         buttonSkip = findViewById(R.id.pause2);
@@ -121,6 +122,7 @@ public class TimerActivity extends AppCompatActivity {
         serviceIntent.putExtra("WORK_TIME", intent.getIntExtra("WORK_TIME", 25));
         serviceIntent.putExtra("BREAK_AMOUNT", intent.getIntExtra("BREAK_AMOUNT", 2));
         serviceIntent.putExtra("TASK_NAME", intent.getStringExtra("TASK_NAME"));
+        serviceIntent.putExtra("TASK_DESC", intent.getStringExtra("TASK_DESC"));
         serviceIntent.putExtra("BREAK_MINS", breakMins);
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -134,6 +136,9 @@ public class TimerActivity extends AppCompatActivity {
         if (isBound && timerService != null) {
             String name = timerService.getTaskName();
             if (name != null) taskNameTitle.setText(name);
+
+            String desc = timerService.getTaskDesc();
+            if (desc != null) textDescription.setText(desc);
             
             updateUI(timerService.getTimeLeftInMillis(), 
                      timerService.getDisplayTime(),
@@ -153,9 +158,11 @@ public class TimerActivity extends AppCompatActivity {
         int current = intent.getIntExtra("currentSegment", 1);
         int total = intent.getIntExtra("totalSegments", 1);
         String name = intent.getStringExtra("taskName");
+        String desc = intent.getStringExtra("taskDesc");
         long maxDuration = intent.getLongExtra("maxDuration", 1000);
 
         if (name != null) taskNameTitle.setText(name);
+        if (desc != null) textDescription.setText(desc);
         updateUI(timeLeft, displayTime, isWork, running, current, total, maxDuration);
     }
 

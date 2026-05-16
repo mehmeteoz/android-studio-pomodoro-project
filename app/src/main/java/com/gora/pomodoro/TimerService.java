@@ -45,6 +45,7 @@ public class TimerService extends Service {
     private long segmentDurationMillis;
     private long breakDurationMillis;
     private String taskName;
+    private String taskDesc;
     private boolean isInitialized = false;
 
     private static final String CHANNEL_ID = "TimerServiceChannel";
@@ -78,6 +79,7 @@ public class TimerService extends Service {
 
         if (intent != null && intent.hasExtra("WORK_TIME") && !isInitialized) {
             taskName = intent.getStringExtra("TASK_NAME");
+            taskDesc = intent.getStringExtra("TASK_DESC");
             int workMins = intent.getIntExtra("WORK_TIME", 25);
             int breakAmount = intent.getIntExtra("BREAK_AMOUNT", 2);
             int breakMins = intent.getIntExtra("BREAK_MINS", 5);
@@ -239,6 +241,10 @@ public class TimerService extends Service {
         return taskName;
     }
 
+    public String getTaskDesc() {
+        return taskDesc;
+    }
+
     public long getTimeLeftInMillis() {
         return timeLeftInMillis;
     }
@@ -342,6 +348,7 @@ public class TimerService extends Service {
         intent.putExtra("currentSegment", currentSegment);
         intent.putExtra("totalSegments", totalSegments);
         intent.putExtra("taskName", taskName);
+        intent.putExtra("taskDesc", taskDesc);
         intent.putExtra("maxDuration", isWorkPhase ? segmentDurationMillis : breakDurationMillis);
         sendBroadcast(intent);
     }

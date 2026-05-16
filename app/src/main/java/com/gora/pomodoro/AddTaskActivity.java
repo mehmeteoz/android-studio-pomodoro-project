@@ -17,7 +17,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private NumberPicker workTimePicker;
     private NumberPicker workBreakAmount;
     private Button buttonAddTask;
-    private EditText editTaskName;
+    private EditText editTaskName, editTaskDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class AddTaskActivity extends AppCompatActivity {
         workBreakAmount = findViewById(R.id.pickerBreakAmount);
         buttonAddTask = findViewById(R.id.buttonAddTask);
         editTaskName = findViewById(R.id.editTaskName);
+        editTaskDesc = findViewById(R.id.editTaskDesc);
 
         workTimePicker.setMinValue(1);
         workTimePicker.setMaxValue(60);
@@ -52,6 +53,8 @@ public class AddTaskActivity extends AppCompatActivity {
             if (taskName.isEmpty()) {
                 taskName = "Yeni Görev";
             }
+            String taskDesc = editTaskDesc.getText().toString().trim();
+
             int workMins = workTimePicker.getValue();
             int breakAmount = workBreakAmount.getValue();
 
@@ -59,6 +62,7 @@ public class AddTaskActivity extends AppCompatActivity {
             MainActivity.taskNames.add(taskName + " (" + workMins + " Dk)");
             MainActivity.taskWorkTimes.add(workMins);
             MainActivity.taskBreakAmounts.add(breakAmount);
+            MainActivity.taskDescriptions.add(taskDesc);
 
             // Save tasks to persistence
             MainActivity.saveTasks(this);
